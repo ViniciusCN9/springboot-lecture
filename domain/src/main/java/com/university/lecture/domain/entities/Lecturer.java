@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -16,28 +16,31 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="tb_student")
+@Table(name="tb_lecturer")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Student {
-
+public class Lecturer {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(length = 70, nullable = false)
-    @Size(max = 70, message = "O primeiro nome do estudante deve ter no máximo 70 caracteres")
+    @Size(max = 70, message = "O primeiro nome do palestrante deve ter no máximo 70 caracteres")
     private String firstName;
 
     @Column(length = 70, nullable = false)
-    @Size(max = 70, message = "O sobrenome do estudante deve ter no máximo 70 caracteres")
+    @Size(max = 70, message = "O sobrenome do palestrante deve ter no máximo 70 caracteres")
     private String lastName;
 
-    @Column(length = 10, nullable = false)
-    @Size(min = 10, max = 10, message = "O número do cartão do estudante deve ter 10 caracteres")
-    private String studentCardNumber;
+    @Column(length = 1000, nullable = false)
+    @Size(max = 1000, message = "O depoimento do palestrante deve ter no máximo 1000 caracteres")
+    private String bio;
 
-    @ManyToMany(mappedBy = "studentRegistrations")
-    private List<LectureSchedule> lectureRegistrations;
+    @OneToMany(mappedBy = "mainLecturer")
+    private List<Lecture> lectures;
+
+    @OneToMany(mappedBy = "lecturer")
+    private List<LectureSchedule> lectureSchedules;
 }
