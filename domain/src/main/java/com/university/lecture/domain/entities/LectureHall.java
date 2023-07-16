@@ -4,27 +4,20 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name="tb_lecture_hall")
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-public class LectureHall {
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+@Getter
+@Setter
+@SuperBuilder
+public class LectureHall extends BaseEntity {
 
     @Column(length = 70, nullable = false)
     @Size(max = 70, message = "O nome do estabelecimento deve ter no máximo 70 caracteres")
