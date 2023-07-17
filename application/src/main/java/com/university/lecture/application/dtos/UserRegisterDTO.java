@@ -1,6 +1,6 @@
 package com.university.lecture.application.dtos;
 
-public class RegisterDTO {
+public class UserRegisterDTO {
     
     public String username;
 

@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.university.lecture.domain.entities.Lecture;
 
-public interface LectureRepository extends JpaRepository<Lecture, Integer> {
+public interface ILectureRepository extends JpaRepository<Lecture, Integer> {
     
 }

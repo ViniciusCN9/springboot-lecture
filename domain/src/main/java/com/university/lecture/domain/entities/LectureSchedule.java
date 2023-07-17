@@ -5,22 +5,31 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.SuperBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="tb_lecture_schedule")
-@Getter
-@Setter
-@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class LectureSchedule extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "fk_lectureHallId", nullable = false)
@@ -38,7 +47,7 @@ public class LectureSchedule extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "fk_lecturerId", nullable = false)
-    private Lecture lecturer;
+    private Lecturer lecturer;
 
     @ManyToMany
     @JoinTable(
